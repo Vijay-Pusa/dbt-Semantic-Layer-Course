@@ -44,9 +44,8 @@ metrics:
     label: "customers"
     type_params:
       measure: customers
-  - name: "customers_with_orders"
-    label: "customers_with_orders"
-    description: "Unique count of customers placing orders"
+  - name: "customers_lifetime_spend"
+    label: "customers_lifetime_spend"
     type: simple
     type_params:
-      measure: customers
+      measure: count_lifetime_orders

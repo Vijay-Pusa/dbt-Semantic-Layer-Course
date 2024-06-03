@@ -80,6 +80,15 @@ metrics:
     label: "order_total"
     type_params:
       measure: order_total
+  - name: new_customer
+    description: Unique count of new customers.
+    label: New Customers
+    type: simple
+    type_params:
+      measure: customers_with_orders
+    filter: |
+      {{ Dimension('customer__customer_type') }}  = 'new'
+      
   - name: "locations_with_orders"
     description: "The number of locations that have orders."
     type: simple
@@ -124,14 +133,6 @@ metrics:
     type: simple
     type_params:
       measure: min_order_value
-  - name: new_customer
-    description: Unique count of new customers.
-    label: New Customers
-    type: simple
-    type_params:
-      measure: customers_with_orders
-    filter: |
-      {{ Dimension('customer__customer_type') }}  = 'new'
   - name: "order_amount"
     label: "order_amount"    
     description: The cost of fulfilling each order
