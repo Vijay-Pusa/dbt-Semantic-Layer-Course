@@ -37,13 +37,18 @@ semantic_models:
         agg: count_distinct
 
 metrics:
-#SIMPLE TYPE METRICS
   - name: "customers"
     description: "Count of customers"
     type: simple
     label: "customers"
     type_params:
       measure: customers
+  - name: customer_spend_pct
+    label: customer spend ratio
+    type: ratio
+    type_params: 
+      numerator: customers_lifetime_spend
+      denominator: customers
   - name: "customers_lifetime_spend"
     label: "customers_lifetime_spend"
     type: simple
