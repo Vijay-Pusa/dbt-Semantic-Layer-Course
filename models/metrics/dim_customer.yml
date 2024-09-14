@@ -49,6 +49,16 @@ metrics:
     type_params: 
       numerator: customers_lifetime_spend
       denominator: customers
+
+  - name: customer_spend_pct_derived
+    label: customer spend ratio derived
+    type: derived
+    type_params:
+      expr: customers_lifetime_spend / customers
+      metrics:
+        - name: customers_lifetime_spend
+        - name: customers    
+
   - name: "customers_lifetime_spend"
     label: "customers_lifetime_spend"
     type: simple
