@@ -39,6 +39,9 @@ semantic_models:
       - name: customers
         expr: customer_id
         agg: count_distinct
+      - name: customers_with_spends
+        expr: lifetime_spend_pretax
+        agg: count
 
 metrics:
   - name: "customers"
@@ -47,6 +50,13 @@ metrics:
     label: "customers"
     type_params:
       measure: customers
+  
+  - name: "customers_with_spends"
+    description: "Count of customers with spends"
+    type: simple
+    label: "customers_with_spends"
+    type_params:
+      measure: customers_with_spends
 
   - name: "customers_lifetime_spend"
     label: "customers_lifetime_spend"
@@ -73,14 +83,14 @@ metrics:
       numerator: 
         name: customers_lifetime_spend_amount
       denominator: 
-        name: customers
+        name: customers_with_spends
 
   - name: customer_spend_pct_derived
     label: customer spend ratio derived
     type: derived
     type_params:
-      expr: customers_lifetime_spend_amount / customers
+      expr: customers_lifetime_spend_amount / customers_with_spends
       metrics:
         - name: customers_lifetime_spend_amount
-        - name: customers    
+        - name: customers_with_spends    
 
