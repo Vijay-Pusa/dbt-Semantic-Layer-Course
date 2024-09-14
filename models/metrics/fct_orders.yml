@@ -11,7 +11,7 @@ semantic_models:
       - name: location
         type: foreign
         expr: location_id
-      - name: customer_id
+      - name: customer
         type: foreign
         expr: customer_id
     dimensions:
