@@ -94,3 +94,10 @@ metrics:
         - name: customers_lifetime_spend_amount
         - name: customers_with_spends    
 
+  - name: cumulative_spend_ratio
+    label: Cumulative spend ratio
+    description: cumulative spend ratio
+    type: cumulative
+    type_params:
+      measure: 
+        name: lifetime_spend_pretax_avg
