@@ -101,4 +101,4 @@ metrics:
     type_params:
       measure: 
         name: customers
-      grain_to_date: month
+      grain_to_date: day
