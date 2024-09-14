@@ -29,6 +29,10 @@ semantic_models:
       - name: lifetime_spend_pretax
         description: Customer lifetime spend before taxes.
         agg: sum
+      - name: lifetime_spend_pretax_avg
+        description: average Customer lifetime spend before taxes.
+        agg: average
+        expr: lifetime_spend_pretax
       - name: lifetime_spend
         agg: sum
         description: Gross customer lifetime spend inclusive of taxes.
@@ -43,12 +47,33 @@ metrics:
     label: "customers"
     type_params:
       measure: customers
+
+  - name: "customers_lifetime_spend"
+    label: "customers_lifetime_spend"
+    type: simple
+    type_params:
+      measure: count_lifetime_orders
+  
+  - name: "customers_lifetime_spend_amount"
+    label: "customers_lifetime_spend_amount"
+    type: simple
+    type_params:
+      measure: lifetime_spend_pretax
+
+  - name: "customers_lifetime_spend_avg"
+    label: "customers_lifetime_spend_avg"
+    type: simple
+    type_params:
+      measure: lifetime_spend_pretax_avg
+
   - name: customer_spend_pct
     label: customer spend ratio
     type: ratio
     type_params: 
-      numerator: customers_lifetime_spend
-      denominator: customers
+      numerator: 
+        name: customers_lifetime_spend
+      denominator: 
+        name: customers
 
   - name: customer_spend_pct_derived
     label: customer spend ratio derived
@@ -59,8 +84,3 @@ metrics:
         - name: customers_lifetime_spend
         - name: customers    
 
-  - name: "customers_lifetime_spend"
-    label: "customers_lifetime_spend"
-    type: simple
-    type_params:
-      measure: count_lifetime_orders
